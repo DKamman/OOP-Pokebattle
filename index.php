@@ -1,11 +1,15 @@
 <?php
 
-require 'Pokemon.php';
-require 'Charmeleon.php';
-require 'Pikachu.php';
+require 'init.php';
 
-$charmeleon = new Charmeleon('Charmeleon', 'Fire ', 60);
-$pikachu = new Pikachu('Pikachu', 'Lightning', 60);
+$pikachu = new Pikachu('token');
+
+echo $pikachu->getName();
+echo $pikachu->getEnergyType();
+echo $pikachu->getHitpoints();
+
+$charmeleon = new Charmeleon('Token');
 
 echo $charmeleon->getName();
-echo $pikachu->getName();
+echo $charmeleon->getEnergyType();
+echo $charmeleon->getHitpoints();

@@ -16,6 +16,14 @@ class Pokemon {
         return $this->name;
     }
 
+    public function getEnergyType() {
+        return $this->energyType;
+    }
+
+    public function getHitpoints() {
+        return $this->hitpoints;
+    }
+
     // public function addWeakness($energyType, $multiplier){
     //     $this->weakness = new Weakness($energyType, $multiplier);
     //    }
