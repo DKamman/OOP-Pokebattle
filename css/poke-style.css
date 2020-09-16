@@ -1,0 +1,10 @@
+.table-row {
+  padding-bottom: 25px; }
+  .table-row .table-head {
+    padding-right: 50px; }
+  .table-row .table-cell {
+    padding: 10px 0px; }
+    .table-row .table-cell p {
+      margin: 0; }
+
+/*# sourceMappingURL=poke-style.css.map */
