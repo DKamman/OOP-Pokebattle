@@ -3,7 +3,7 @@
 require 'init.php';
 
 $pikachu = new Pikachu('Makinto');
-$charmeleon = new Charmeleon('Leodicapri');
+$charmeleon = new Charmeleon('Pabu');
 
 $pikachuAttacks = $pikachu->getAttacks();
 $charmeleonAttacks = $charmeleon->getAttacks();
@@ -21,9 +21,10 @@ include 'inc/htmlstart.html';
         <th class="table-head">Attacks (Damage)</th>
         <th class="table-head">Weakness (Multiplier)</th>
         <th class="table-head">Resistance (Value)</th>
+        <th class="table-head">Color</th>
     </tr>
     <tr class="table-row">
-        <td class="table-cell">Pikachu</td>
+        <td class="table-cell"><? echo $pikachu->pokemonType; ?></td>
         <td class="table-cell"><? echo $pikachu->getName() . " "; ?></td>
         <td class="table-cell"><? echo $pikachu->getEnergyType() . " "; ?></td>
         <td class="table-cell"><? echo $pikachu->getHitpoints() . " "; ?></td>
@@ -35,9 +36,10 @@ include 'inc/htmlstart.html';
         </td>
         <td class="table-cell"><? echo $pikachu->getWeakness() . " "; ?></td>
         <td class="table-cell"><? echo $pikachu->getResistance() . " "; ?></td>
+        <td class="table-cell"><? echo $pikachu->color ?></td>
     </tr>
     <tr class="table-row">
-        <td class="table-cell">Charmeleon</td>
+        <td class="table-cell"><? echo $charmeleon->pokemonType; ?></td>
         <td class="table-cell"><? echo $charmeleon->getName() . " "; ?></td>
         <td class="table-cell"><? echo $charmeleon->getEnergyType() . " "; ?></td>
         <td class="table-cell"><? echo $charmeleon->getHitpoints() . " "; ?></td>
@@ -49,8 +51,11 @@ include 'inc/htmlstart.html';
         </td>
         <td class="table-cell"><? echo $charmeleon->getWeakness() . " "; ?></td>
         <td class="table-cell"><? echo $charmeleon->getResistance() . " "; ?></td>
+        <td class="table-cell"><? echo $charmeleon->color ?></td>
     </tr>
 </table>
 
 <?php
+
+$pikachu->attackPokemon($pikachu, $charmeleon, $pikachuAttacks[0]);
 include 'inc/htmlend.html';
