@@ -57,5 +57,9 @@ include 'inc/htmlstart.html';
 
 <?php
 
+// $headbuttAttack = $attacks["HEADBUTT"]; 
+// $attacks = array("HEADBUTT" => "Head Butt", 50);
+// Associative array to use for the attackPokemon function. To be able to specify by name what attack to use.
+
 $pikachu->attackPokemon($pikachu, $charmeleon, $pikachuAttacks[0]);
 include 'inc/htmlend.html';

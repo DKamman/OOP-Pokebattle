@@ -31,6 +31,11 @@ class Pokemon {
         }
     }
 
+    
+    // $headbuttAttack = $attacks["HEADBUTT"]; 
+    // $attacks = array("HEADBUTT" => "Head Butt", 50);
+    // Associative array to use for the attackPokemon function. To be able to specify by name what attack to use.
+
     public function attackPokemon($attacker, $target, $attack){
         echo "Attacking " . $attacker->energyType . $attack->damage;
         echo "Defending " . $target->energyType . $target->resistance->energyType ; 
