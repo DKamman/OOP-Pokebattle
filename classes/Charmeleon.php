@@ -9,7 +9,7 @@ class Charmeleon extends Pokemon {
         $energyType = 'Fire';
         $hitpoints = 60;
         $health;
-        $attacks = [new Attack("Head Butt" , 10), new Attack("Flare", 30)];
+        $attacks = ["Head Butt" => new Attack("Head Butt" , 10), "Flare" => new Attack("Flare", 30)];
         $weakness = new Weakness("Water", 2);
         $resistance = new Resistance("Lightning", 10);
 
