@@ -1,6 +1,8 @@
 <?php
 
 class Pokemon {
+
+    public $population = 0;
     
     public $pokemonType;
     public $name;
@@ -29,6 +31,8 @@ class Pokemon {
         if ($energyType == 'Lightning') {
             $this->color = "Yellow";
         }
+
+        $population++;
     }
 
     public function attackPokemon($attack, $target){
@@ -50,6 +54,10 @@ class Pokemon {
             $actualHealth = $target->health - $actualDamage;
             echo $target->name . "'s health: " . $actualHealth . "<hr><br><br>";
         } 
+    }
+
+    public function getPopulation() {
+        return $population;
     }
 
     public function getName() {

@@ -9,6 +9,8 @@ $pikachuAttacks = $pikachu->getAttacks();
 $charmeleonAttacks = $charmeleon->getAttacks();
 
 include 'inc/htmlstart.html';
+
+$pikachu->getPopulation();
 ?> 
 
 <table>
