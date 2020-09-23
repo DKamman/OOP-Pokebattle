@@ -2,20 +2,24 @@
 
 class Pokemon {
 
-    public $population = 0;
+    private static $populationCount = 0;
+    private static $population = [];
+    private static $pokemonHealth;
     
-    public $pokemonType;
-    public $name;
-    public $energyType;
-    public $hitpoints;
-    public $health;
-    public $attacks;
-    public $weakness;
-    public $resistance;
-    public $color;
+    private $pokemonType;
+    private $name;
+    private $energyType;
+    private $hitpoints;
+    private $health;
+    private $attacks;
+    private $weakness;
+    private $resistance;
+    private $color;
 
     public function __construct($pokemonType, $name, $energyType, $hitpoints, $health, $attacks, $weakness, $resistance, $color)
     {
+        self::$populationCount++;
+
         $this->pokemonType = $pokemonType;
         $this->name = $name;
         $this->energyType = $energyType;
@@ -32,7 +36,7 @@ class Pokemon {
             $this->color = "Yellow";
         }
 
-        $population++;
+        self::$population[] = $this;
     }
 
     public function attackPokemon($attack, $target){
@@ -43,21 +47,64 @@ class Pokemon {
         if ($this->energyType == $target->weakness->energyType) {
             $actualDamage = $attack->damage * $target->weakness->multiplier;
             echo "The attack did " . $actualDamage . " damage to " . $target->name . ".<br>";
+
+            // debugg if calculations work
+            // $actualHealth = $target->health - $actualDamage;
+            // echo $target->name . "'s health: " . $actualHealth . "<hr><br><br>";
+
+            // set's $actualHealth to traget's health
             $actualHealth = $target->health - $actualDamage;
-            echo $target->name . "'s health: " . $actualHealth . "<hr><br><br>";
+            if ($actualHealth < 0) {
+                $actualHealth = 0;
+            }
+            $target->health = $actualHealth;
+            echo $target->name . "'s health: " . $target->health . "<hr><br><br>";
         }
 
         // // Resistance calculation
         if ($this->energyType == $target->resistance->energyType) {
             $actualDamage = $attack->damage - $target->resistance->value;
             echo "The attack did " . $actualDamage . " damage to " . $target->name . ".<br>";
+
+            //debugg if calculations work
+            // $actualHealth = $target->health - $actualDamage;
+            // echo $target->name . "'s health: " . $actualHealth . "<hr><br><br>";
+
+            // set's $actualHealth to traget's health
             $actualHealth = $target->health - $actualDamage;
-            echo $target->name . "'s health: " . $actualHealth . "<hr><br><br>";
-        } 
+            if ($actualHealth < 0) {
+                $actualHealth = 0;
+            }
+            $target->health = $actualHealth;
+            echo $target->name . "'s health: " . $target->health . "<hr><br><br>";
+        }
+
+        if ($target->health <= 0) {
+            self::$populationCount--;
+        }
     }
 
-    public function getPopulation() {
-        return $population;
+    public static function getPopulationHealth() {
+        foreach (self::$population as $pokemon) {
+            $ph = $pokemon->health;
+            if ($ph > 0) {
+                self::$pokemonHealth = self::$pokemonHealth + $ph;
+            }
+        }
+        self::$pokemonHealth = self::$pokemonHealth / self::$populationCount;
+        return self::$pokemonHealth;
+    }
+
+    public static function getPopulation() {
+        return self::$population;
+    }
+
+    public static function getPopulationCount() {
+        return self::$populationCount;
+    }
+
+    public function getPokemonType() {
+        return $this->pokemonType;
     }
 
     public function getName() {
@@ -86,5 +133,9 @@ class Pokemon {
 
     public function getResistance() {
         return $this->resistance->energyType . " (" . $this->resistance->value . ")";
+    }
+
+    public function getColor() {
+        return $this->color;
     }
 }
